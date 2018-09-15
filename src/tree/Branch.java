@@ -6,10 +6,7 @@ import java.awt.Graphics;
 import client.Childtask;
 
 public class Branch extends Childtask {
-	double X1;
-	double Y1;
-	double Y2;
-	double X2;
+	double X1,Y1,Y2,X2;
 	private Color MyCol;
 
 	public Branch(int WindowW, int WindowH ,double X1,double Y1,double X2,double Y2) {
@@ -18,14 +15,14 @@ public class Branch extends Childtask {
 		this.X2=X2;
 		this.Y1=Y1;
 		this.Y2=Y2;
-		
+
 		MyCol=new Color(109, 86, 59);
 	}
-	
+
 	@Override
 	public void update() {
-
 	}
+
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(MyCol);

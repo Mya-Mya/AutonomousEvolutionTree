@@ -1,6 +1,7 @@
 package tree;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.util.ArrayList;
 
 import client.Childtask;
@@ -13,6 +14,8 @@ public class Tree extends Childtask{
 	private ArrayList<Leaf>MyLeaves=new ArrayList<Leaf>();
 	private ArrayList<Branch>MyBranches=new ArrayList<Branch>();
 
+	private ArrayList<BodyPart>BodyParts=new ArrayList<BodyPart>();
+	
 	public Tree(int WindowW, int WindowH, Tree Girl,Tree Boy) {
 		super(WindowW, WindowH);
 
@@ -51,6 +54,7 @@ public class Tree extends Childtask{
 
 		MyBranches.add(new Branch(WindowW, WindowH, LXstart, LYstart, LXend, LYend));
 		MyBranches.add(new Branch(WindowW,WindowH,SXstart,SYstart,SXend,SYend));
+		BodyParts.add(new BodyPart(WindowW, WindowH, new Point(LXstart, LYstart), new Point((int)LXend,(int)LYend), BodyPartMode.MODE_BRANCH));
 		
 		if(Times==0) {//葉を作る
 			MyLeaves.add(new Leaf(WindowW, WindowH,

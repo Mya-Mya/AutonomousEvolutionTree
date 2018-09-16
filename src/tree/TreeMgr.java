@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import client.Childtask;
 
 public class TreeMgr extends Childtask {
-	public static final int TREES_PER_GENERAT=10;
+	public static final int TREES_PER_GENERAT=60;
 	
 	private ArrayList<Tree> MyTrees=new ArrayList<Tree>();
 	

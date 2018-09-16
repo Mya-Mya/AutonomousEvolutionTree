@@ -37,34 +37,33 @@ public class Tree extends Childtask{
 	 * [3]=長い方の枝の末端から生えるネストの角度
 	 * [4]=短い方の枝の末端から生えるネストの角度
 	 */
-	public void createMyBody(int x,int y,int Times, double SumSize, double Angle) {
+	public void createMyBody(int LXstart,int LYstart,int Times, double SumSize, double LAngle) {
 		//枝の各種設定
 		double LongerSize=SumSize/(Math.abs(Gene[0])+Math.abs(Gene[1]))*Math.abs(Gene[0]);
-		double LXend=x+LongerSize* (Math.random()>0.5?Math.cos(Angle):-Math.cos(Angle));//左右どちらに振れるかわからない
-		double LYend=y-LongerSize* (Math.random()>0.5?Math.sin(Angle):-Math.sin(Angle));
+		double LXend=LXstart+LongerSize* (Math.random()>0.5?Math.cos(LAngle):-Math.cos(LAngle));//左右どちらに振れるかわからない
+		double LYend=LYstart-LongerSize* (Math.random()>0.5?Math.sin(LAngle):-Math.sin(LAngle));
 
 		double ShorterSize=SumSize/(Math.abs(Gene[0])+Math.abs(Gene[1]))*Math.abs(Gene[1]);
-		double SXstart=ShorterBranchBase*x+(1-ShorterBranchBase)*LXend;
-		double SYstart=ShorterBranchBase*y+(1-ShorterBranchBase)*LYend;
-		double SXend=SXstart+ShorterSize* (Math.random()>0.5?Math.cos(Angle+Gene[2]):-Math.cos(Angle+Gene[2]));
-		double SYend=SYstart-ShorterSize* (Math.random()>0.5?Math.sin(Angle+Gene[2]):-Math.sin(Angle+Gene[2]));
+		double SXstart=ShorterBranchBase*LXstart+(1-ShorterBranchBase)*LXend;
+		double SYstart=ShorterBranchBase*LYstart+(1-ShorterBranchBase)*LYend;
+		double SXend=SXstart+ShorterSize* (Math.random()>0.5?Math.cos(LAngle+Gene[2]):-Math.cos(LAngle+Gene[2]));
+		double SYend=SYstart-ShorterSize* (Math.random()>0.5?Math.sin(LAngle+Gene[2]):-Math.sin(LAngle+Gene[2]));
 
+		MyBranches.add(new Branch(WindowW, WindowH, LXstart, LYstart, LXend, LYend));
+		MyBranches.add(new Branch(WindowW,WindowH,SXstart,SYstart,SXend,SYend));
+		
 		if(Times==0) {//葉を作る
 			MyLeaves.add(new Leaf(WindowW, WindowH,
 					(int)LXend, (int)LYend,
-					(int)(LXend+(LXend-x)*3),
-					(int)(LYend+(LYend-y)*3)
+					(int)(LXend+(LXend-LXstart)*3),
+					(int)(LYend+(LYend-LYstart)*3)
 			));
 			return;
 		}
 		Times--;
 
-		//長い方の枝の端から
-		MyBranches.add(new Branch(WindowW, WindowH, x, y, LXend, LYend));
-		createMyBody((int)LXend, (int)LYend, Times, SumSize*NextLongerSizeRate, Angle+Gene[3]);
-		//短い方の枝の端から
-		MyBranches.add(new Branch(WindowW,WindowH,SXstart,SYstart,SXend,SYend));
-		createMyBody((int)SXend, (int)SYend, Times, SumSize*NextShorterSizeRate, Angle+Gene[4]);
+		createMyBody((int)LXend, (int)LYend, Times, SumSize*NextLongerSizeRate, LAngle+Gene[3]);
+		createMyBody((int)SXend, (int)SYend, Times, SumSize*NextShorterSizeRate, LAngle+Gene[4]);
 	}
 
 	//葉がどのくらいの光を受けられるか = どのくらいx軸に開いているか

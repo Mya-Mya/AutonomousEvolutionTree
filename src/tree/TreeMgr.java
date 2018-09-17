@@ -33,7 +33,7 @@ public class TreeMgr extends Childtask {
 		switch(now) {
 		case Making:
 			if(makingCnt>=TREES_PER_GENERAT)now=Scene.Calculating;
-			
+
 			Tree buf=new Tree(Girl, Boy);
 			buf.makeBody();
 			MyTrees.add(buf);
@@ -45,8 +45,8 @@ public class TreeMgr extends Childtask {
 			MyTrees.remove(Girl);
 			Boy=MyTrees.get(getMaxLightedTreeIndex());
 			MyTrees.clear();
-			
-			previewingCnt=30;
+
+			previewingCnt=50;
 			makingCnt=0;
 			nowGeneration++;
 			now=Scene.Previewing;

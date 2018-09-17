@@ -1,5 +1,5 @@
 package tree;
 
 public interface BodyPartsRegisterer {
-	public void registerBodyPart();
+	public void registerBodyPart(BodyPart bodyPart);
 }

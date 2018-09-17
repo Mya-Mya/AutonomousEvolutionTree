@@ -7,10 +7,10 @@ public abstract class GeneAndPhenotype {
 	public GeneAndPhenotype() {	}
 	
 	//遺伝させ自身の遺伝子を作る
-	public void inherit(double[] Girl,double []Boy) {
+	public void inherit(Tree Girl,Tree Boy) {
 		Gene=new double[NUM_GENE_ELEMENTS];
 	}
-	//自身の体を作る
+	//発現させる
 	public void createBody(BodyPartsRegisterer registerer) {}
 	
 	//遺伝子を返す

@@ -1,7 +1,9 @@
 package tree;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 
 import client.Childtask;
@@ -12,6 +14,8 @@ public class BodyPart extends Childtask {
 	private Color Col;
 	Point p1=new Point();
 	Point p2=new Point();
+	
+	private BasicStroke MyStroke=new BasicStroke(4.0f);
 
 	public BodyPart(Point p1,Point p2, BodyPartMode Mode) {
 		if(p1.x<p2.x) {
@@ -35,15 +39,18 @@ public class BodyPart extends Childtask {
 	}
 
 	//MODE_LEAF限定
-	public boolean isCrossing(int x) {
+	public boolean isYourLeafCrossing(int x) {
 		if(!isLeaf())return false;
 		if(p1.y>MyFrame.WindowH||p2.y>MyFrame.WindowH)return false;
+		if(p1.y<0||p2.y<0)return false;
 		return (p1.x<x&&x<p2.x)?true:false;
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Col);
-		g.drawLine(p1.x,p1.y,p2.x,p2.y);
+		Graphics2D g2=(Graphics2D)g;
+		g2.setStroke(MyStroke);
+		g2.setColor(Col);
+		g2.drawLine(p1.x,p1.y,p2.x,p2.y);
 	}
 }

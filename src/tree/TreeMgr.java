@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 import client.Childtask;
+import client.MyFrame;
 
 public class TreeMgr extends Childtask {
 	public static final int TREES_PER_GENERAT=60;
@@ -19,16 +20,14 @@ public class TreeMgr extends Childtask {
 	private Tree Boy=null;
 	
 
-	public TreeMgr(int WindowW, int WindowH) {
-		super(WindowW, WindowH);
-	}
+	public TreeMgr() {}
 
 	@Override
 	public void update() {
 		//生成途中
 		if(makingCnt<=TREES_PER_GENERAT) {	
-			Tree buf=new Tree(WindowW, WindowH, Girl, Boy);
-			buf.createMyBody(WindowW/2, WindowH, 7, 400, 3.1415/2);
+			Tree buf=new Tree(Girl, Boy);
+			buf.createMyBody(MyFrame.WindowW/2, MyFrame.WindowH, 7, 400, 3.1415/2);
 			MyTrees.add(buf);
 			makingCnt++;
 		}else {

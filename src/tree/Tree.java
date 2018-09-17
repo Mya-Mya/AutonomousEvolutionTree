@@ -15,9 +15,9 @@ public class Tree extends Childtask{
 	private ArrayList<Branch>MyBranches=new ArrayList<Branch>();
 
 	private ArrayList<BodyPart>BodyParts=new ArrayList<BodyPart>();
-	
-	public Tree(int WindowW, int WindowH, Tree Girl,Tree Boy) {
-		super(WindowW, WindowH);
+	private GeneAndPhenotype BodyMaker;
+
+	public Tree(Tree Girl,Tree Boy) {
 
 		//自分の遺伝子を親から受け継ぐ+変異
 		for(int i=0;i<Gene.length;i++) {
@@ -55,7 +55,7 @@ public class Tree extends Childtask{
 		MyBranches.add(new Branch(WindowW, WindowH, LXstart, LYstart, LXend, LYend));
 		MyBranches.add(new Branch(WindowW,WindowH,SXstart,SYstart,SXend,SYend));
 		BodyParts.add(new BodyPart(WindowW, WindowH, new Point(LXstart, LYstart), new Point((int)LXend,(int)LYend), BodyPartMode.MODE_BRANCH));
-		
+
 		if(Times==0) {//葉を作る
 			MyLeaves.add(new Leaf(WindowW, WindowH,
 					(int)LXend, (int)LYend,

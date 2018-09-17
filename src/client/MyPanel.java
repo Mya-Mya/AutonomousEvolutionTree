@@ -11,7 +11,7 @@ import tree.TreeMgr;
 public class MyPanel extends JPanel implements ActionListener{
 	Childtask task1;
 	public MyPanel() {
-		task1=new TreeMgr(MyFrame.WindowW, MyFrame.WindowH);
+		task1=new TreeMgr();
 		new javax.swing.Timer(5,this).start();
 		setVisible(true);
 	}
